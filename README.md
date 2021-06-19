@@ -1,11 +1,12 @@
 # TAN 
 
+### Description
 A companion token for TITAN with a maximum supply of (1,000,000,000 TAN) and zero pre minted tokens. 
 
 TAN will be emitted to users who sacrifice TITAN and all TITAN recieved by the protocol will removed from circulation.
 
 
-The following are the steps necessary to accomplish the task written above:
+#### The following are the steps necessary to accomplish the task written above:
 
 1. Create an ERC20 contract on ETH chain that mint all the token(TAN)  
 2. Bridge it into POLYGON 
