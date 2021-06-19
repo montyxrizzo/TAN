@@ -18,6 +18,7 @@ contract ERC20Interface {
 
     event Transfer(address indexed from, address indexed to, uint tokens);
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
+    
 }
 
 // ----------------------------------------------------------------------------
@@ -40,9 +41,9 @@ contract TAN is ERC20Interface, SafeMath, ERC20Burnable, AccessControl {
     string public symbol;
     uint8 public decimals; // 18 decimals is the strongly suggested default, avoid changing it
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-
+    uint256 public constant initialSupply = 0
     uint256 public _totalSupply;
-    
+    uint256 _currentSupply = 0;
     mapping(address => uint) balances;
     mapping(address => mapping(address => uint)) allowed;
     
@@ -56,13 +57,16 @@ contract TAN is ERC20Interface, SafeMath, ERC20Burnable, AccessControl {
         symbol = "TAN";
         decimals = 18;
         _totalSupply = 1000000000;
-        balances[msg.sender] = _totalSupply;
+        balances[msg.sender] = initialSupply;
+        Transfer(0x0, msg.sender, initialSupply);
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(MINTER_ROLE, msg.sender);
     }
 
     function mint(address to, uint256 amount) public {
         require(hasRole(MINTER_ROLE, msg.sender));
+        require(_currentSupply.add(tokens) < _totalSupply);
+        _currentSupply = _currentSupply.add(tokens);
         _mint(to, amount);
     }
     
