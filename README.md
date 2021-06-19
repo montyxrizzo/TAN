@@ -1,4 +1,4 @@
-"# TAN" 
+# TAN 
 
 A companion token for TITAN with a maximum supply of (1,000,000,000 TAN) and zero pre minted tokens. 
 
