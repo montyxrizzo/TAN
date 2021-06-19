@@ -59,7 +59,6 @@ contract TAN is ERC20Interface, SafeMath, ERC20Burnable, AccessControl {
         balances[msg.sender] = _totalSupply;
         _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _setupRole(MINTER_ROLE, msg.sender);
-        emit Transfer(address(0), msg.sender, _totalSupply);
     }
 
     function mint(address to, uint256 amount) public {
